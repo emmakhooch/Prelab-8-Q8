@@ -1,0 +1,18 @@
+module nextPC();
+//instantiate inputs and output
+input unconditional;
+input conditional;
+input ALUzero;
+input [63:0] sign_extender;
+input [63:0] current_PC;
+output [63:0] next_PC;
+
+//make always block
+always @(*)
+if((unconditional | (conditional & ALUzero))
+  next_PC = current_PC + sign_extender;
+else
+  next_PC = current_PC + 4;
+end
+
+endmodule
